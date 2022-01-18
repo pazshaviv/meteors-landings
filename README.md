@@ -1,1 +1,5 @@
-Just run npm start and start playing
+Just run 
+```
+npm start
+```
+and start playing
