@@ -1,24 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import MeteorsListContainer from './components/MeteorsListContainer/MeteorsListContainer'
+import './style.scss'
 
-function App() {
+interface Meteor {
+  id: string;
+  key: string;
+  name: string;
+  year?: string;
+  mass?: string | 'Not available';
+}
+
+const App: React.FC  = () => {
+  const [meteors, setMeteors] = useState<any[]>([])
+
+  const cleanMeteorsData = (rawData: Meteor[]) => {
+    const filtered = rawData.filter(meteor => {
+      return meteor.year != undefined
+    })
+
+    return filtered.map((meteor) => {
+        const year = new Date(meteor.year as string)
+
+        return {
+          id: meteor.id,
+          name: meteor.name,
+          year: year.getFullYear().toString(),
+          mass: meteor.mass && parseInt(meteor.mass)
+        }
+    })
+  }
+
+  useEffect(()=>{
+    const nasa_url = 'https://data.nasa.gov/resource/y77d-th95.json'
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(nasa_url)
+        // console.log(response)
+        const json = await response.json()
+
+        setMeteors(cleanMeteorsData(json))
+      } catch (error) {
+        console.log('error', error)  
+      }
+    } 
+
+    fetchData()
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MeteorsListContainer meteors={meteors} />
     </div>
   );
 }

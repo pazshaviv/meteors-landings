@@ -1,0 +1,21 @@
+.App {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  p {
+    font-family: Helvetica;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  p, label, span, h1 {
+    font-family: Helvetica;
+  }
+}
