@@ -3,14 +3,15 @@ import MeteorsListContainer from './components/MeteorsListContainer/MeteorsListC
 import { MeteorDTO, fetchMeteorsList} from './api'
 import './style.scss'
 
-interface Meteor {
+export interface Meteor {
   id: string;
   name: string;
   year?: string;
   mass?: number | 0;
+  coords: [number, number]
 }
 
-const App: React.FC  = () => {
+const App: React.FC = () => {
   const [meteors, setMeteors] = useState<Meteor[]>([])
 
   useEffect(()=>{
@@ -41,7 +42,8 @@ const cleanMeteorsData = (rawData: MeteorDTO[]) => {
         id: meteor.id,
         name: meteor.name,
         year: extractedYear,
-        mass: massAsNumber
+        mass: massAsNumber,
+        coords: meteor?.geolocation?.coordinates
       }
   })
 }

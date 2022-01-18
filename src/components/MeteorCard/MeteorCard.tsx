@@ -1,13 +1,9 @@
 import React from 'react';
+import { Meteor } from '../../App'
 import './style.scss' 
 
 interface Props {
-  meteor: {
-    id: string
-    name: string;
-    year?: string;
-    mass?: number
-  }
+  meteor: Meteor
 }
 
 const MeteorCard: React.FC<Props> = ({ meteor }) => {
@@ -28,6 +24,17 @@ const MeteorCard: React.FC<Props> = ({ meteor }) => {
             <span>{meteor.mass}</span>
           </div>) : null
         }
+        <div className='coordinates-container'>
+          <p className='coordinates-title'>Coordinates</p>
+          <div className='coordinate-container'>
+            <span>X:</span>
+            <span>{meteor.coords[0]}</span>
+          </div>
+          <div className='coordinate-container'>
+            <span>Y:</span>
+            <span>{meteor.coords[1]}</span>
+          </div>
+        </div>
       </div>
     </div>
   );

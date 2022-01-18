@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Filters from '../Filters/Filters'
 import MeteorsList from '../MeteorsList/MeteorsList'
+import { Meteor } from '../../App'
 import './style.scss'
-
-interface Meteor {
-  id: string;
-  name: string;
-  year?: string;
-  mass?: number;
-}
 
 interface Props {
   meteors: Meteor[]

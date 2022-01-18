@@ -7,7 +7,7 @@
   // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   // justify-content: space-around;
   margin: 10px;
-  height: 9rem;
+  height: 13rem;
   width: 9rem;
   padding: 10px;
 
@@ -19,6 +19,7 @@
     border: 1px solid grey;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    align-items: center;
 
     .detail-container {
       display: flex;
@@ -31,6 +32,27 @@
   
       .name {
         font-weight: bold;
+      }
+    }
+
+    .coordinates-container {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid blue;
+      border-radius: 1rem;
+      padding: 0.5rem;
+      width: 70%;
+      height: 6rem;
+      justify-content: space-around;
+
+      .coordinates-title {
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .coordinate-container {
+        display: flex;
+        justify-content: center;
       }
     }
   }

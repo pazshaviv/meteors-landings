@@ -70,7 +70,7 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, yearFilter, onYear
           label="Minimum Mass"
           variant="outlined"
           type="number"
-          value={massInputValue || ''}
+          value={massInputValue}
           disabled={massInputDisabled}
           onChange={handleMassFilterChange}
         />

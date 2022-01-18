@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import MeteorCard from '../MeteorCard/MeteorCard'
+import { Meteor } from '../../App'
 import './style.scss' 
 
 interface Props {
-		meteors: {
-			id: string;
-			name: string;
-      year?: string;
-      mass?: number;
-		}[]
+		meteors: Meteor[]
 }
 
 const MeteorsList: React.FC<Props> = ({ meteors }) => {
@@ -17,7 +13,7 @@ const MeteorsList: React.FC<Props> = ({ meteors }) => {
       <div className="meteors-list">
         {
           meteors.map((meteor) => {
-            return <MeteorCard meteor={meteor}/>
+            return <MeteorCard key={meteor.id} meteor={meteor}/>
           })
         }
       </div>

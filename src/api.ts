@@ -5,7 +5,10 @@ export interface MeteorDTO {
     name: string;
     year?: string;
     mass?: string;
-    coordinates: string;
+    geolocation: {
+        type: string;
+        coordinates: [number, number]
+    };
 }
 
 export const fetchMeteorsList = async () => {
