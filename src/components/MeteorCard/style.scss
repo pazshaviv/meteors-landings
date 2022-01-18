@@ -1,44 +1,29 @@
 .meteor-card {
-	// display: flex;
-	// flex-direction: column;
-
-	// margin: 1rem;
-  // width: 9rem;
-  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  // justify-content: space-around;
   margin: 10px;
   height: 13rem;
   width: 9rem;
   padding: 10px;
+
+  .title {
+    font-weight: bold;
+    font-size: 20px;
+    color: #69bdd2
+  }
 
   .meteor-details {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
-    border: 1px solid grey;
+    border: 1px solid #69bdd2;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     align-items: center;
 
-    .detail-container {
-      display: flex;
-      justify-content: center;
-      align-items: space-between;
-  
-      label {
-        padding-right: 0.5rem;
-      }
-  
-      .name {
-        font-weight: bold;
-      }
-    }
-
     .coordinates-container {
       display: flex;
       flex-direction: column;
-      border: 1px solid blue;
+      border: 1px solid #69bdd2;
       border-radius: 1rem;
       padding: 0.5rem;
       width: 70%;
