@@ -5,7 +5,6 @@ import './style.scss'
 interface Props {
 		meteors: {
 			id: string;
-			key: string;
 			name: string;
       year?: string;
       mass?: number;

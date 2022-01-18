@@ -1,48 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import MeteorsListContainer from './components/MeteorsListContainer/MeteorsListContainer'
+import { MeteorDTO, fetchMeteorsList} from './api'
 import './style.scss'
 
 interface Meteor {
   id: string;
-  key: string;
   name: string;
   year?: string;
-  mass?: string | 'Not available';
+  mass?: number | 0;
 }
 
 const App: React.FC  = () => {
-  const [meteors, setMeteors] = useState<any[]>([])
-
-  const cleanMeteorsData = (rawData: Meteor[]) => {
-    const filtered = rawData.filter(meteor => {
-      return meteor.year != undefined
-    })
-
-    return filtered.map((meteor) => {
-        const year = new Date(meteor.year as string)
-
-        return {
-          id: meteor.id,
-          name: meteor.name,
-          year: year.getFullYear().toString(),
-          mass: meteor.mass && parseInt(meteor.mass)
-        }
-    })
-  }
+  const [meteors, setMeteors] = useState<Meteor[]>([])
 
   useEffect(()=>{
-    const nasa_url = 'https://data.nasa.gov/resource/y77d-th95.json'
-
     const fetchData = async () => {
-      try {
-        const response = await fetch(nasa_url)
-        const json = await response.json()
-
-        setMeteors(cleanMeteorsData(json))
-      } catch (error) {
-        console.log('error', error)  
-      }
-    } 
+      const meteorsData = await fetchMeteorsList()
+      const cleaned = cleanMeteorsData(meteorsData)
+      setMeteors(cleaned)
+    }
 
     fetchData()
   }, [])
@@ -52,6 +28,22 @@ const App: React.FC  = () => {
       <MeteorsListContainer meteors={meteors} />
     </div>
   );
+}
+
+const cleanMeteorsData = (rawData: MeteorDTO[]) => {
+  const filtered = rawData.filter(({ year }) => year)
+
+  return filtered.map((meteor) => {
+      const extractedYear = new Date(meteor.year as string).getFullYear().toString()
+      const massAsNumber = meteor.mass ? parseInt(meteor.mass) : 0
+
+      return {
+        id: meteor.id,
+        name: meteor.name,
+        year: extractedYear,
+        mass: massAsNumber
+      }
+  })
 }
 
 export default App;

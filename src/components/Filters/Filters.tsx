@@ -12,13 +12,13 @@ interface Props {
 
 const VALID_YEAR_LENGTH = 4
 
-const MeteorsListContainer: React.FC<Props> = ({ yearOptions, onYearFilterUpdate, onMassFilterUpdate, yearFilter }) => {
-  const [inputValue, setInputValue] = useState(yearFilter);
+const MeteorsListContainer: React.FC<Props> = ({ yearOptions, yearFilter, onYearFilterUpdate, onMassFilterUpdate }) => {
+  const [yearInputValue, setYearInputValue] = useState(yearFilter);
   const [massInputValue, setMassInputValue] = useState('');
   const [massInputDisabled, setMassInputDisabled] = useState(true);
 
   const isValidYearInput = (input: string) => {
-    return input.length >= VALID_YEAR_LENGTH
+    return input?.length >= VALID_YEAR_LENGTH && parseInt(input) > 0;
   }
 
   const disableMassInput = () => {
@@ -30,11 +30,11 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, onYearFilterUpdate
   }
 
   useEffect(() => {
-    if(isValidYearInput(yearFilter) || yearFilter == '') setInputValue(yearFilter)
+    if(isValidYearInput(yearFilter)) setYearInputValue(yearFilter)
   }, [yearFilter])
 
   const handleYearFilterChange = (newInputValue: string) => {
-    setInputValue(newInputValue)
+    setYearInputValue(newInputValue)
     
     if(isValidYearInput(newInputValue)) {
       onYearFilterUpdate(newInputValue)
@@ -54,8 +54,8 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, onYearFilterUpdate
     <div className='filters'>
       <div className='input-container'>
         <Autocomplete
-          inputValue={inputValue}
-          value={inputValue}
+          inputValue={yearInputValue}
+          value={yearInputValue}
           onInputChange={(event, newInputValue) => {
             handleYearFilterChange(newInputValue);
           }}
