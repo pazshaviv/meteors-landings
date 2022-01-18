@@ -33,7 +33,7 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, onYearFilterUpdate
     if(isValidYearInput(yearFilter) || yearFilter == '') setInputValue(yearFilter)
   }, [yearFilter])
 
-  const handleFilterChange = (newInputValue: string) => {
+  const handleYearFilterChange = (newInputValue: string) => {
     setInputValue(newInputValue)
     
     if(isValidYearInput(newInputValue)) {
@@ -52,12 +52,12 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, onYearFilterUpdate
 
   return (
     <div className='filters'>
-      <div className='year-input-container'>
+      <div className='input-container'>
         <Autocomplete
           inputValue={inputValue}
           value={inputValue}
           onInputChange={(event, newInputValue) => {
-            handleFilterChange(newInputValue);
+            handleYearFilterChange(newInputValue);
           }}
           options={yearOptions}
           sx={{ width: 300 }}
@@ -65,7 +65,7 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, onYearFilterUpdate
         />
       </div>
 
-      <div className='mass-input-container'>
+      <div className='input-container'>
         <TextField
           label="Minimum Mass"
           variant="outlined"

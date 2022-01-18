@@ -36,7 +36,6 @@ const App: React.FC  = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(nasa_url)
-        // console.log(response)
         const json = await response.json()
 
         setMeteors(cleanMeteorsData(json))

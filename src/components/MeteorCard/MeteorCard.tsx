@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './style.scss' 
 
 interface Props {
@@ -22,10 +22,11 @@ const MeteorCard: React.FC<Props> = ({ meteor }) => {
           <span>{meteor.year}</span>
         </div>
         {        
-          meteor.mass ? <div className='detail-container'>
+          meteor.mass ? (
+          <div className='detail-container'>
             <label>Mass:</label>
             <span>{meteor.mass}</span>
-          </div> : null
+          </div>) : null
         }
       </div>
     </div>

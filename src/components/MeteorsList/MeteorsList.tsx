@@ -18,11 +18,7 @@ const MeteorsList: React.FC<Props> = ({ meteors }) => {
       <div className="meteors-list">
         {
           meteors.map((meteor) => {
-            return (
-              <MeteorCard 
-                meteor={meteor}
-              />
-            )
+            return <MeteorCard meteor={meteor}/>
           })
         }
       </div>
