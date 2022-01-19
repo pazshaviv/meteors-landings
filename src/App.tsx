@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import MeteorsAppContainer from './components/MeteorsDataFetcher'
 import './style.scss'
 
@@ -10,4 +10,4 @@ const App: React.FC = () => {
   )
 }
 
-export default App;
+export default App

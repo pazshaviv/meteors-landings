@@ -1,7 +1,7 @@
-import React from 'react';
-import { Meteor } from '../../common/interfaces';
-import CardDetail from '../common/CardDetail/CardDetail';
-import './style.scss' ;
+import React from 'react'
+import { Meteor } from '../../common/interfaces'
+import CardDetail from '../common/CardDetail/CardDetail'
+import './style.scss' 
 
 interface Props {
   meteor: Meteor
@@ -9,12 +9,12 @@ interface Props {
 
 const MeteorCard: React.FC<Props> = ({ meteor }) => {
   return (
-    <div className='meteor-card' key={meteor.id}>
-      <div className='meteor-details'>
-        <span className='title'>{meteor.name}</span>
+    <div className="meteor-card" key={meteor.id}>
+      <div className="meteor-details">
+        <span className="title">{meteor.name}</span>
         <CardDetail 
           label='Year:'
-          value={meteor.year || ''}
+          value={meteor?.year || ''}
         />
         {   
           meteor.mass ? <CardDetail 
@@ -22,20 +22,20 @@ const MeteorCard: React.FC<Props> = ({ meteor }) => {
             value={meteor.mass.toString()}
           /> : null
         }
-        <div className='coordinates-container'>
-          <p className='coordinates-title'>Coordinates</p>
-          <div className='coordinate-container'>
+        <div className="coordinates-container">
+          <p className="coordinates-title">Coordinates</p>
+          <div className="coordinate-container">
             <span>X:</span>
             <span>{meteor.coords[0]}</span>
           </div>
-          <div className='coordinate-container'>
+          <div className="coordinate-container">
             <span>Y:</span>
             <span>{meteor.coords[1]}</span>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default MeteorCard;
+export default MeteorCard

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import MeteorCard from '../MeteorCard/MeteorCard'
-import { Meteor } from '../../common/interfaces';
+import { Meteor } from '../../common/interfaces'
 import './style.scss' 
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 const MeteorsList: React.FC<Props> = ({ meteors }) => {
   return (
-    <div className='meteors-list-container'>
+    <div className="meteors-list-container">
       <div className="meteors-list">
         {
           meteors.map((meteor) => {
@@ -18,7 +18,7 @@ const MeteorsList: React.FC<Props> = ({ meteors }) => {
         }
       </div>
     </div>
-  );
+  )
 }
 
-export default MeteorsList;
+export default MeteorsList

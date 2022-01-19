@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 import './style.scss' 
 
 interface Props {
-  Title: JSX.Element;
-  Content: JSX.Element;
+  Title: JSX.Element
+  Content: JSX.Element
 }
 
 const Card: React.FC = () => {
   return (
     <></>
-  );
+  )
 }
 
-export default Card;
+export default Card
