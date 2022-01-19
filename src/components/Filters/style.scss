@@ -1,19 +1,19 @@
 .filters {
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	align-items: center;
-	height: 8rem;
-	margin-top: 8rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  height: 8rem;
+  margin-top: 8rem;
 
-	p {
-		width: 10rem;
-	}
+  p {
+    width: 10rem;
+  }
 
-	.input-container {
-		display: flex;
-		width: 13rem;
-		justify-content: space-between;
-		align-items: center;
-	}
+  .input-container {
+    display: flex;
+    width: 13rem;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

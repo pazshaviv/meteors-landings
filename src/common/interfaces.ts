@@ -1,5 +1,5 @@
 export interface Meteor {
-    id: string
+    id: number
     name: string
     year?: string
     mass?: number | 0

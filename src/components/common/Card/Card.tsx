@@ -1,14 +1,17 @@
 import React from 'react'
-import './style.scss' 
+import './style.scss'
 
-interface Props {
-  Title: JSX.Element
-  Content: JSX.Element
+export interface Props {
+  TitleComponent: React.FC
+  ContentComponent: React.FC
 }
 
-const Card: React.FC = () => {
+const Card: React.FC<Props> = ({ TitleComponent, ContentComponent }) => {
   return (
-    <></>
+    <div className="card">
+      {<TitleComponent />}
+      {<ContentComponent />}
+    </div>
   )
 }
 

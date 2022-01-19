@@ -4,10 +4,10 @@ import Autocomplete from '@mui/material/Autocomplete'
 import './style.scss'
 
 interface Props {
-    yearOptions: string[]
-    yearFilter: string
-    onYearFilterUpdate(value: string): void
-    onMassFilterUpdate(value: number): void
+  yearOptions: string[]
+  yearFilter: string
+  onYearFilterUpdate(value: string): void
+  onMassFilterUpdate(value: number): void
 }
 
 const VALID_YEAR_LENGTH = 4
@@ -36,11 +36,11 @@ const MeteorsApp: React.FC<Props> = ({ yearOptions, yearFilter, onYearFilterUpda
   }, [yearFilter])
 
   const handleYearFilterChange = (newSelectedValue: string | null) => {
-    if(!newSelectedValue) return
-    
+    if (!newSelectedValue) return
+
     setYearSelectedValue(newSelectedValue)
-    
-    if(isValidYearInput(newSelectedValue)) {
+
+    if (isValidYearInput(newSelectedValue)) {
       onYearFilterUpdate(newSelectedValue)
       enableMassInput()
     } else {

@@ -1,14 +1,14 @@
 const nasa_url = 'https://data.nasa.gov/resource/y77d-th95.json'
 
 export interface MeteorDTO {
-    id: string
-    name: string
-    year?: string
-    mass?: string
-    geolocation: {
-        type: string
-        coordinates: [number, number]
-    }
+  id: string
+  name: string
+  year?: string
+  mass?: string
+  geolocation: {
+    type: string
+    coordinates: [number, number]
+  }
 }
 
 export const fetchMeteorsList = async (): Promise<[]> => {

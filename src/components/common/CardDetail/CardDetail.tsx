@@ -1,5 +1,5 @@
 import React from 'react'
-import './style.scss' 
+import './style.scss'
 
 interface Props {
   label: string
@@ -9,8 +9,8 @@ interface Props {
 const CardDetail: React.FC<Props> = ({ label, value }) => {
   return (
     <div className="detail-container">
-      <label>{label}</label>
-      <span>{value}</span>
+      <span className="label">{label}</span>
+      <span className="value">{value}</span>
     </div>
   )
 }

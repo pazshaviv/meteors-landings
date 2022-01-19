@@ -25,20 +25,20 @@ const MeteorsAppContainer: React.FC<Props> = ({ meteors }) => {
     setDisplayMessage(true)
     setDisplayMessageText(text)
 
-    setTimeout(function(){
+    setTimeout(function () {
       setDisplayMessage(false)
     }, 3000)
   }
 
   const filterByYearAndMass = () => {
     const filteredByYear = filterByYear(yearFilter, meteors)
-    if(massFilter == 0) return filteredByYear
-    
+    if (massFilter == 0) return filteredByYear
+
     const filteredByMassAndYear = filterByMass(massFilter, filteredByYear)
-    if(filteredByMassAndYear.length > 0) return filteredByMassAndYear
+    if (filteredByMassAndYear.length > 0) return filteredByMassAndYear
 
     const differentYearMeteor = meteors.find(meteor => meteor.mass && meteor.mass >= massFilter)
-    if(!differentYearMeteor) {
+    if (!differentYearMeteor) {
       displayNotFoundMessage(NOT_FOUND_TEXT)
       return []
     }
@@ -60,7 +60,7 @@ const MeteorsAppContainer: React.FC<Props> = ({ meteors }) => {
   function getYearsList(): string[] {
     const years = new Set<string>()
     meteors.forEach(meteor => {
-      if(meteor.year) years.add(meteor.year as string)
+      if (meteor.year) years.add(meteor.year as string)
     })
 
     return Array.from(years)

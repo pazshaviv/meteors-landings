@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Filters from '../Filters/Filters'
 import MeteorsList from '../MeteorsList/MeteorsList'
 import { Meteor } from '../../common/interfaces'
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const MeteorsApp: React.FC<Props> = (
-  { 
+  {
     onYearFilterUpdate,
     onMassFilterUpdate,
     yearOptions,
@@ -23,31 +23,31 @@ const MeteorsApp: React.FC<Props> = (
     displayMessage,
     meteorsToDisplay,
     displayMessageText
-  } ) => {
+  }) => {
 
   const NotFoundElement = () => {
     return (
       displayMessage ?
-      <p className="not-found-message">
-        {displayMessageText}
-      </p> : null
+        <p className="not-found-message">
+          {displayMessageText}
+        </p> : null
     )
   }
 
   return (
     <div className="app-container">
-    <Filters 
-      onYearFilterUpdate={onYearFilterUpdate}
-      onMassFilterUpdate={onMassFilterUpdate}
-      yearOptions={yearOptions}
-      yearFilter={yearFilter}
-    />
-    <div className="message-container">
-      <NotFoundElement />
+      <Filters
+        onYearFilterUpdate={onYearFilterUpdate}
+        onMassFilterUpdate={onMassFilterUpdate}
+        yearOptions={yearOptions}
+        yearFilter={yearFilter}
+      />
+      <div className="message-container">
+        <NotFoundElement />
+      </div>
+      <h1 className="meteors-list-title">{meteorsToDisplay.length} Meteors Found</h1>
+      <MeteorsList meteors={meteorsToDisplay} />
     </div>
-    <h1 className="meteors-list-title">{meteorsToDisplay.length} Meteors Found</h1>
-    <MeteorsList meteors={meteorsToDisplay} />
-  </div>
   )
 }
 

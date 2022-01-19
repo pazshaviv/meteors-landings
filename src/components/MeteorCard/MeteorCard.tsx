@@ -1,40 +1,58 @@
 import React from 'react'
 import { Meteor } from '../../common/interfaces'
 import CardDetail from '../common/CardDetail/CardDetail'
-import './style.scss' 
+import Card from '../common/Card/Card'
+import './style.scss'
 
-interface Props {
+export interface Props {
   meteor: Meteor
 }
 
 const MeteorCard: React.FC<Props> = ({ meteor }) => {
-  return (
-    <div className="meteor-card" key={meteor.id}>
-      <div className="meteor-details">
-        <span className="title">{meteor.name}</span>
-        <CardDetail 
+  const TitleComponent: React.FC = () => {
+    return <span className="title">{meteor.name}</span>
+  }
+
+  const ContentComponent: React.FC = () => {
+    return (
+      <div className='content-container'>
+        <CardDetail
           label='Year:'
           value={meteor?.year || ''}
         />
-        {   
-          meteor.mass ? <CardDetail 
-            label='Mass:'
-            value={meteor.mass.toString()}
-          /> : null
+        {
+          meteor.mass ? (
+            <CardDetail
+              label='Mass:'
+              value={meteor.mass.toString()}
+            />
+          ) : null
         }
-        <div className="coordinates-container">
-          <p className="coordinates-title">Coordinates</p>
-          <div className="coordinate-container">
-            <span>X:</span>
-            <span>{meteor.coords[0]}</span>
-          </div>
-          <div className="coordinate-container">
-            <span>Y:</span>
-            <span>{meteor.coords[1]}</span>
-          </div>
-        </div>
+        {
+          meteor.coords ? (
+            <div className="coordinates-container">
+              <p className="coordinates-title">Coordinates</p>
+              <CardDetail
+                label='X:'
+                value={meteor.coords[0].toString()}
+              />
+              <CardDetail
+                label='Y:'
+                value={meteor.coords[1].toString()}
+              />
+            </div>
+          ) : null
+        }
       </div>
-    </div>
+    )
+  }
+
+  return (
+    <Card
+      key={meteor.id}
+      TitleComponent={TitleComponent}
+      ContentComponent={ContentComponent}
+    />
   )
 }
 

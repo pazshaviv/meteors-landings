@@ -5,7 +5,7 @@ import './style.scss'
 const App: React.FC = () => {
   return (
     <div className="App">
-      <MeteorsAppContainer/>
+      <MeteorsAppContainer />
     </div>
   )
 }
