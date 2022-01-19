@@ -12,8 +12,9 @@ interface Props {
 
 const VALID_YEAR_LENGTH = 4
 
-const MeteorsListContainer: React.FC<Props> = ({ yearOptions, yearFilter, onYearFilterUpdate, onMassFilterUpdate }) => {
-  const [yearInputValue, setYearInputValue] = useState(yearFilter);
+const MeteorsApp: React.FC<Props> = ({ yearOptions, yearFilter, onYearFilterUpdate, onMassFilterUpdate }) => {
+  const [yearSelectedValue, setYearSelectedValue] = useState<string>(yearFilter);
+  const [yearInputValue, setYearInputValue] = useState<string>(yearFilter);
   const [massInputValue, setMassInputValue] = useState('');
   const [massInputDisabled, setMassInputDisabled] = useState(true);
 
@@ -30,14 +31,17 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, yearFilter, onYear
   }
 
   useEffect(() => {
-    if(isValidYearInput(yearFilter)) setYearInputValue(yearFilter)
+    setYearInputValue(yearFilter)
+    setYearSelectedValue(yearFilter)
   }, [yearFilter])
 
-  const handleYearFilterChange = (newInputValue: string) => {
-    setYearInputValue(newInputValue)
+  const handleYearFilterChange = (newSelectedValue: string | null) => {
+    if(!newSelectedValue) return
     
-    if(isValidYearInput(newInputValue)) {
-      onYearFilterUpdate(newInputValue)
+    setYearSelectedValue(newSelectedValue)
+    
+    if(isValidYearInput(newSelectedValue)) {
+      onYearFilterUpdate(newSelectedValue)
       enableMassInput()
     } else {
       onYearFilterUpdate('')
@@ -54,10 +58,14 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, yearFilter, onYear
     <div className='filters'>
       <div className='input-container'>
         <Autocomplete
+          autoSelect={true}
+          value={yearSelectedValue}
+          onChange={(event: any, newSelectedValue: string | null) => {
+            handleYearFilterChange(newSelectedValue);
+          }}
           inputValue={yearInputValue}
-          value={yearInputValue}
-          onInputChange={(event, newInputValue) => {
-            handleYearFilterChange(newInputValue);
+          onInputChange={(event: any, newInputValue: string) => {
+            setYearInputValue(newInputValue)
           }}
           options={yearOptions}
           sx={{ width: 300 }}
@@ -79,4 +87,4 @@ const MeteorsListContainer: React.FC<Props> = ({ yearOptions, yearFilter, onYear
   )
 }
 
-export default MeteorsListContainer;
+export default MeteorsApp;

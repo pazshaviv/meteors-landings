@@ -1,51 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import MeteorsListContainer from './components/MeteorsListContainer/MeteorsListContainer'
-import { MeteorDTO, fetchMeteorsList} from './api'
+import React from 'react';
+import MeteorsAppContainer from './components/MeteorsDataFetcher'
 import './style.scss'
 
-export interface Meteor {
-  id: string;
-  name: string;
-  year?: string;
-  mass?: number | 0;
-  coords: [number, number]
-}
-
 const App: React.FC = () => {
-  const [meteors, setMeteors] = useState<Meteor[]>([])
-
-  useEffect(()=>{
-    const fetchData = async () => {
-      const meteorsData = await fetchMeteorsList()
-      const cleaned = cleanMeteorsData(meteorsData)
-      setMeteors(cleaned)
-    }
-
-    fetchData()
-  }, [])
-
   return (
     <div className="App">
-      <MeteorsListContainer meteors={meteors} />
+      <MeteorsAppContainer/>
     </div>
-  );
-}
-
-const cleanMeteorsData = (rawData: MeteorDTO[]) => {
-  const filtered = rawData.filter(({ year }) => year)
-
-  return filtered.map((meteor) => {
-      const extractedYear = new Date(meteor.year as string).getFullYear().toString()
-      const massAsNumber = meteor.mass ? parseInt(meteor.mass) : 0
-
-      return {
-        id: meteor.id,
-        name: meteor.name,
-        year: extractedYear,
-        mass: massAsNumber,
-        coords: meteor?.geolocation?.coordinates
-      }
-  })
+  )
 }
 
 export default App;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meteor } from '../../App';
+import { Meteor } from '../../common/interfaces';
 import CardDetail from '../common/CardDetail/CardDetail';
 import './style.scss' ;
 
@@ -11,14 +11,12 @@ const MeteorCard: React.FC<Props> = ({ meteor }) => {
   return (
     <div className='meteor-card' key={meteor.id}>
       <div className='meteor-details'>
-        {/* <div className='detail-container'> */}
-          <span className='title'>{meteor.name}</span>
-        {/* </div> */}
+        <span className='title'>{meteor.name}</span>
         <CardDetail 
           label='Year:'
           value={meteor.year || ''}
         />
-        {      
+        {   
           meteor.mass ? <CardDetail 
             label='Mass:'
             value={meteor.mass.toString()}

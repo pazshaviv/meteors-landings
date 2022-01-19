@@ -1,10 +1,10 @@
 import React from 'react';
 import MeteorCard from '../MeteorCard/MeteorCard'
-import { Meteor } from '../../App'
+import { Meteor } from '../../common/interfaces';
 import './style.scss' 
 
 interface Props {
-		meteors: Meteor[]
+  meteors: Meteor[]
 }
 
 const MeteorsList: React.FC<Props> = ({ meteors }) => {
