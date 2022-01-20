@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Meteor } from '../../common/interfaces'
 import { filterByYear, filterByMass } from './utils'
-import MeteorsApp from './MeteorsApp'
+import MeteorsScreen from './MeteorsScreen'
 
 interface Props {
   meteors: Meteor[]
@@ -10,7 +10,7 @@ interface Props {
 const NOT_FOUND_FOR_YEAR_TEXT = 'Mass wasn\'t found, jumping to first-year where there is a mass that fits the criteria.'
 const NOT_FOUND_TEXT = 'No meteors for that mass and year'
 
-const MeteorsAppContainer: React.FC<Props> = ({ meteors }) => {
+const MeteorsScreenContainer: React.FC<Props> = ({ meteors }) => {
   const [yearFilter, setYearFilter] = useState<string>('')
   const [massFilter, setMassFilter] = useState<number>(0)
   const [meteorsToDisplay, setMeteorsToDisplay] = useState<Meteor[]>([])
@@ -21,13 +21,11 @@ const MeteorsAppContainer: React.FC<Props> = ({ meteors }) => {
     setMeteorsToDisplay(filterByYearAndMass())
   }, [yearFilter, massFilter])
 
-  function displayNotFoundMessage(text: string) {
+  const displayNotFoundMessage = (text: string): void => {
     setDisplayMessage(true)
     setDisplayMessageText(text)
 
-    setTimeout(function () {
-      setDisplayMessage(false)
-    }, 3000)
+    setTimeout(() => setDisplayMessage(false), 3000)
   }
 
   const filterByYearAndMass = () => {
@@ -57,7 +55,7 @@ const MeteorsAppContainer: React.FC<Props> = ({ meteors }) => {
     setMassFilter(filterValue)
   }
 
-  function getYearsList(): string[] {
+  const getYearsList = (): string[] => {
     const years = new Set<string>()
     meteors.forEach(meteor => {
       if (meteor.year) years.add(meteor.year as string)
@@ -67,7 +65,7 @@ const MeteorsAppContainer: React.FC<Props> = ({ meteors }) => {
   }
 
   return (
-    <MeteorsApp
+    <MeteorsScreen
       onYearFilterUpdate={handleYearFilterUpdate}
       onMassFilterUpdate={handleMassFilterUpdate}
       yearOptions={getYearsList()}
@@ -79,4 +77,4 @@ const MeteorsAppContainer: React.FC<Props> = ({ meteors }) => {
   )
 }
 
-export default MeteorsAppContainer
+export default MeteorsScreenContainer

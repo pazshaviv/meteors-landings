@@ -1,15 +1,25 @@
 import React from 'react'
+import Card, { Props as CardProps } from '../Card/Card'
+
 import './style.scss'
 
 interface Props {
-  cards: JSX.Element[]
+  cardsData: CardProps[]
 }
 
-const CardsList: React.FC<Props> = ({ cards }) => {
+const CardsList: React.FC<Props> = ({ cardsData }) => {
   return (
     <div className="cards-list-container">
       <div className="cards-list">
-        {cards.map((card) => card)}
+        {
+          cardsData.map((cardData) => {
+            return <Card
+              key={cardData.key}
+              TitleComponent={cardData.TitleComponent}
+              ContentComponent={cardData.ContentComponent}
+            />
+          })
+        }
       </div>
     </div>
   )

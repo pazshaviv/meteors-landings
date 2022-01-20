@@ -2,15 +2,16 @@ import React from 'react'
 import './style.scss'
 
 export interface Props {
-  TitleComponent: React.FC
-  ContentComponent: React.FC
+  key: number | string
+  TitleComponent: JSX.Element
+  ContentComponent: JSX.Element
 }
 
-const Card: React.FC<Props> = ({ TitleComponent, ContentComponent }) => {
+const Card: React.FC<Props> = ({ key, TitleComponent, ContentComponent }) => {
   return (
-    <div className="card">
-      {<TitleComponent />}
-      {<ContentComponent />}
+    <div key={key} className="card">
+      {TitleComponent}
+      {ContentComponent}
     </div>
   )
 }

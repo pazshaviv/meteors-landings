@@ -70,7 +70,7 @@ const MeteorsApp: React.FC<Props> = ({ yearOptions, yearFilter, onYearFilterUpda
           }}
           options={yearOptions}
           sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Type a year..." />}
+          renderInput={(params) => <TextField {...params} type="number" label="Type a year..." />}
         />
       </div>
 

@@ -14,7 +14,7 @@ interface Props {
   meteorsToDisplay: Meteor[]
 }
 
-const MeteorsApp: React.FC<Props> = (
+const MeteorsScreen: React.FC<Props> = (
   {
     onYearFilterUpdate,
     onMassFilterUpdate,
@@ -51,4 +51,4 @@ const MeteorsApp: React.FC<Props> = (
   )
 }
 
-export default MeteorsApp
+export default MeteorsScreen

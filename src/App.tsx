@@ -1,11 +1,11 @@
 import React from 'react'
-import MeteorsAppContainer from './components/MeteorsDataFetcher'
+import MeteorsApp from './components/MeteorsApp'
 import './style.scss'
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <MeteorsAppContainer />
+      <MeteorsApp />
     </div>
   )
 }
