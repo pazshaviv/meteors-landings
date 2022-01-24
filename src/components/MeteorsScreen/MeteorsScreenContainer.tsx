@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Meteor } from '../../common/interfaces'
 import { filterByYear, filterByMass } from './utils'
 import MeteorsScreen from './MeteorsScreen'
@@ -13,13 +13,8 @@ const NOT_FOUND_TEXT = 'No meteors for that mass and year'
 const MeteorsScreenContainer: React.FC<Props> = ({ meteors }) => {
   const [yearFilter, setYearFilter] = useState<string>('')
   const [massFilter, setMassFilter] = useState<number>(0)
-  const [meteorsToDisplay, setMeteorsToDisplay] = useState<Meteor[]>([])
   const [displayMessage, setDisplayMessage] = useState(false)
   const [displayMessageText, setDisplayMessageText] = useState('')
-
-  useEffect(() => {
-    setMeteorsToDisplay(filterByYearAndMass())
-  }, [yearFilter, massFilter])
 
   const displayNotFoundMessage = (text: string): void => {
     setDisplayMessage(true)
@@ -46,6 +41,8 @@ const MeteorsScreenContainer: React.FC<Props> = ({ meteors }) => {
     displayNotFoundMessage(NOT_FOUND_FOR_YEAR_TEXT)
     return []
   }
+
+  const meteorsToDisplay = useMemo(() => filterByYearAndMass(), [yearFilter, massFilter])
 
   const handleYearFilterUpdate = (filterValue: string) => {
     setYearFilter(filterValue)

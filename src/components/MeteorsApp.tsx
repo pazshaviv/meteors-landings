@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import useFetch from '../common/useFetch'
-import MeteorsAppContainer from './MeteorsScreen/MeteorsScreenContainer'
+import MeteorsScreenContainer from './MeteorsScreen/MeteorsScreenContainer'
 import { Meteor } from '../common/interfaces'
 
 const nasa_url = 'https://data.nasa.gov/resource/y77d-th95.json'
@@ -18,19 +18,13 @@ type MeteorDTO = {
 
 const MeteorsApp: React.FC = () => {
   const { data, loading, error } = useFetch<MeteorDTO[]>(nasa_url)
-  const [meteors, setMeteors] = useState<Meteor[]>([])
 
-  useEffect(() => {
-    if(data){
-      const modifiedData = filteredMeteorsData(data)
-      setMeteors(modifiedData)
-    }
-  }, [data])
+  const meteors = data ? filteredMeteorsData(data) : []
 
   if(loading) return <h1>loading data...</h1>
   if(error) console.log(error)
   
-  return <MeteorsAppContainer meteors={meteors} /> 
+  return <MeteorsScreenContainer meteors={meteors} /> 
 }
 
 const filteredMeteorsData = (rawData: MeteorDTO[]) => {

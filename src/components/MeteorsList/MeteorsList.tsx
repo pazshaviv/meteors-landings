@@ -13,7 +13,7 @@ const MeteorsList: React.FC<Props> = ({ meteors }) => {
   const meteorCardsData = meteors.map(meteor => {
     
     return {
-      key: meteor.id,
+      id: meteor.id,
       TitleComponent: <CardTitleComponent title={meteor.name}/>,
       ContentComponent: (
         <CardContentComponent

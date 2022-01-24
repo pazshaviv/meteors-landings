@@ -1,10 +1,16 @@
 import React from 'react'
-import Card, { Props as CardProps } from '../Card/Card'
+import Card from '../Card/Card'
 
 import './style.scss'
 
+interface CardDataProps {
+  id: string | number
+  TitleComponent: JSX.Element
+  ContentComponent: JSX.Element
+}
+
 interface Props {
-  cardsData: CardProps[]
+  cardsData: CardDataProps[]
 }
 
 const CardsList: React.FC<Props> = ({ cardsData }) => {
@@ -14,7 +20,7 @@ const CardsList: React.FC<Props> = ({ cardsData }) => {
         {
           cardsData.map((cardData) => {
             return <Card
-              key={cardData.key}
+              key={cardData.id}
               TitleComponent={cardData.TitleComponent}
               ContentComponent={cardData.ContentComponent}
             />
