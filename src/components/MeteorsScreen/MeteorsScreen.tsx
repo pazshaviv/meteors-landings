@@ -9,8 +9,7 @@ interface Props {
   onMassFilterUpdate: (filterValue: number) => void
   yearOptions: string[]
   yearFilter: string
-  displayMessage: boolean
-  displayMessageText: string
+  displayMessage: string
   meteorsToDisplay: Meteor[]
 }
 
@@ -20,16 +19,15 @@ const MeteorsScreen: React.FC<Props> = (
     onMassFilterUpdate,
     yearOptions,
     yearFilter,
-    displayMessage,
     meteorsToDisplay,
-    displayMessageText
+    displayMessage
   }) => {
 
   const NotFoundElement = () => {
     return (
       displayMessage ?
         <p className="not-found-message">
-          {displayMessageText}
+          {displayMessage}
         </p> : null
     )
   }

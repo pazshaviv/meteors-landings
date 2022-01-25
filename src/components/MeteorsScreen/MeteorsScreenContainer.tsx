@@ -13,14 +13,12 @@ const NOT_FOUND_TEXT = 'No meteors for that mass and year'
 const MeteorsScreenContainer: React.FC<Props> = ({ meteors }) => {
   const [yearFilter, setYearFilter] = useState<string>('')
   const [massFilter, setMassFilter] = useState<number>(0)
-  const [displayMessage, setDisplayMessage] = useState(false)
-  const [displayMessageText, setDisplayMessageText] = useState('')
+  const [displayMessage, setDisplayMessage] = useState('')
 
   const displayNotFoundMessage = (text: string): void => {
-    setDisplayMessage(true)
-    setDisplayMessageText(text)
+    setDisplayMessage(text)
 
-    setTimeout(() => setDisplayMessage(false), 3000)
+    setTimeout(() => setDisplayMessage(''), 3000)
   }
 
   const filterByYearAndMass = () => {
@@ -68,7 +66,6 @@ const MeteorsScreenContainer: React.FC<Props> = ({ meteors }) => {
       yearOptions={getYearsList()}
       yearFilter={yearFilter}
       displayMessage={displayMessage}
-      displayMessageText={displayMessageText}
       meteorsToDisplay={meteorsToDisplay}
     />
   )

@@ -5,15 +5,17 @@ import { Meteor } from '../common/interfaces'
 
 const nasa_url = 'https://data.nasa.gov/resource/y77d-th95.json'
 
+interface geolocation {
+  type: string
+  coordinates: [number, number]
+}
+
 type MeteorDTO = {
   id: string
   name: string
   year?: string
   mass?: string
-  geolocation: {
-    type: string
-    coordinates: [number, number]
-  }
+  geolocation: geolocation
 }
 
 const MeteorsApp: React.FC = () => {
